@@ -1,1 +1,1 @@
-py capstone/src/main.py
+py capstone/src/PyKinectTest.py

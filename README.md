@@ -16,6 +16,8 @@ leave
 ## Useful Links
 [PyKinect](https://github.com/Kinect/PyKinect2) - A useful library used for writing Python programs for Kinect
 
+[PyGame](https://www.pygame.org/) - We might need this as well to use with PyKinect
+
 [Kinect Sign Language](https://github.com/sgpopov/kinect-sign-language) - What looks like an older but finished version of this project
 
 [Sign Language Interpreter using Deep Learning](https://github.com/harshbg/Sign-Language-Interpreter-using-Deep-Learning) - A non-Kinect version of what we hope to achieve
