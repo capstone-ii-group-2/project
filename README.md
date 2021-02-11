@@ -11,3 +11,11 @@ If you encounter problems running this virtual environment, it might be caused b
 
 ## Instructions (for non devs)
 leave
+
+
+## Useful Links
+[PyKinect](https://github.com/Kinect/PyKinect2) - A useful library used for writing Python programs for Kinect
+
+[Kinect Sign Language](https://github.com/sgpopov/kinect-sign-language) - What looks like an older but finished version of this project
+
+[Sign Language Interpreter using Deep Learning](https://github.com/harshbg/Sign-Language-Interpreter-using-Deep-Learning) - A non-Kinect version of what we hope to achieve
