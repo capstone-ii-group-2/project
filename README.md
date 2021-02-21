@@ -1,23 +1,35 @@
-# Kinect Sign Language Interpreter
+# Python Sign Language Interpreter
 
-## Instructions (for devs)
-**To test that the virtual environment is working correctly, you should:**
-1. Clone the repo or pull latest code from master branch if you already have the repo cloned onto your machine
-2. Have Python installed on your machine with version 3.9.0 at minimum
-3. Try running the python code in ```capstone/src/main.py``` without activating the virtual environment
-4. If that doesn't work (it shouldn't unless you have the required packages installed on your machine), run the ```activate.bat``` file in the base directory and then try again (it should work this time)
+## Instructions
 
-If you encounter problems running this virtual environment, it might be caused by the first line in ```capstone/pyvenv.cfg``` where the Python install on your machine is supposed to go, at least I think so. I just looked in that directory and there's nothing in there so I'm not sure how this program is running at all. Shows you what I know about Python and virtual environments.
+### **Get the correct version of Python**
 
-## Instructions (for non devs)
-leave
+* [Python version 3.8.0](https://www.python.org/downloads/release/python-380/) is required for this project to work. Higher & lower versions of Python will not work. Installation will be different based on your platform, but you should install it in a custom location that is easy to access. For example, I installed it in 'C:\Python\Python38' on my machine (Windows).
+
+### **Setting the correct Python version in the virtual environment (Windows)**
+
+* Once Python 3.8.0 is installed and this repository has been cloned to your machine, open ```capstone\pyenv.cfg``` and change the home variable (```home = C:\Python\Python38```) to be set to the directory where you installed Python 3.8.0.
+
+
+### **Setting the correct Python version in the virtual environment (Mac)**
+
+* WIP
+
+
+### **Activating the virtual environment (Windows)**
+
+* Run the ```activate.bat``` file in this repository's base directory. If this does not work, navigate to ```capstone\Scripts``` and run the ```activate.bat``` file located there.
+
+### **Activating the virtual environment (Mac)**
+
+* WIP
+
+## UNCOMMENT THE TEST YOU WANT TO RUN FROM ```capstone\src\test.py``` FOR NOW TO VERIFY THAT EVERYTHING IS RUNNING CORRECTLY
 
 
 ## Useful Links
-[PyKinect](https://github.com/Kinect/PyKinect2) - A useful library used for writing Python programs for Kinect
+[Sign Language Interpreter using Deep Learning](https://github.com/harshbg/Sign-Language-Interpreter-using-Deep-Learning) - Very close to what we want to achieve
 
-[PyGame](https://www.pygame.org/) - We might need this as well to use with PyKinect
+[Tensorflow](https://www.tensorflow.org/) - A library we will be using for this project
 
-[Kinect Sign Language](https://github.com/sgpopov/kinect-sign-language) - What looks like an older but finished version of this project
-
-[Sign Language Interpreter using Deep Learning](https://github.com/harshbg/Sign-Language-Interpreter-using-Deep-Learning) - A non-Kinect version of what we hope to achieve
+[Webcam Tutorial](https://stackoverflow.com/questions/604749/how-do-i-access-my-webcam-in-python) - Page with the example I followed tog et the webcam running
