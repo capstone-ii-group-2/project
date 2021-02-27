@@ -1,1 +1,1 @@
-py capstone/src/test.py
+py src\test.py

@@ -1,1 +1,0 @@
-capstone/Scripts/activate.bat
