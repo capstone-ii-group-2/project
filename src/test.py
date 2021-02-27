@@ -21,7 +21,7 @@ cv2.destroyWindow("preview")
 '''
 
 # uncomment this to test tensorflow
-
+'''
 mnist =  tf.keras.datasets.mnist
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
 x_train, x_test = x_train / 255.0, x_test / 255.0
@@ -55,3 +55,4 @@ probability_model = tf.keras.Sequential([
     tf.keras.layers.Softmax()
 ])
 probability_model(x_test[:5])
+'''

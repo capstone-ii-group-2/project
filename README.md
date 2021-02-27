@@ -17,3 +17,5 @@
 [Tensorflow](https://www.tensorflow.org/) - A library we will be using for this project
 
 [Webcam Tutorial](https://stackoverflow.com/questions/604749/how-do-i-access-my-webcam-in-python) - Page with the example I followed tog et the webcam running
+
+[Dataset for Sign Language](https://www.kaggle.com/datamunge/sign-language-mnist) - Sign language dataset to train the model
