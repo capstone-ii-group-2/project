@@ -18,6 +18,17 @@
 
 [Webcam Tutorial](https://stackoverflow.com/questions/604749/how-do-i-access-my-webcam-in-python) - Page with the example I followed tog et the webcam running
 
-[Dataset for Sign Language](https://www.kaggle.com/datamunge/sign-language-mnist) - Sign language dataset to train the model (YOU HAVE TO DOWNLOAD THIS ONE AND MOVE IT INTO THE ```training_datasets``` FOLDER TO TRAIN THE MODEL)
+## Datasets
+
+[Dataset for Sign Language](https://www.kaggle.com/datamunge/sign-language-mnist) - Sign language dataset to train the model (we probably won't use this)
 
 [Google Teachable Machine](https://teachablemachine.withgoogle.com/) - Thing we might have to use to create our own dataset
+
+[Another Dataset](http://vlm1.uta.edu/~athitsos/asl_lexicon/) - Another dataset that we could possibly use
+
+## Making your own dataset
+1. Open the [Google Teachable Machine](https://teachablemachine.withgoogle.com/) website and click 'Get Started' in the upper right hand corner.
+2. Pick the 'Image Project' from the list
+3. Click the 'Webcam' button in either Class 1 or Class 2. Click and hold the 'Hold to Record' button to record a series of images.
+4. Once you have the images you want, click the hamburger (three dot) menu in the upper right corner of the Class and click 'Download Samples'
+5. You should now have a zip file with all your recorded images
