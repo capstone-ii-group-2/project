@@ -9,7 +9,9 @@
 
 ### **Install the necessary packages**
 
-* Use ```py -m pip install -r packages.txt``` to install all necessary packages
+* Use ```py -m pip install -r packages.txt``` to install some of the necessary packages
+* Go to [PyTorch's website](https://pytorch.org/get-started/locally/) and install the correct version of PyTorch if you're going to be training any models
+    * You must pick the version of PyTorch based on your package manager & whether you have a GPU with CUDA installed
 
 ## Useful Links
 [Sign Language Interpreter using Deep Learning](https://github.com/harshbg/Sign-Language-Interpreter-using-Deep-Learning) - Very close to what we want to achieve
