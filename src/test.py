@@ -1,10 +1,10 @@
 import cv2
 import torch
 import math
-
+import numpy as np
 
 # uncomment this to test your webcam
-'''
+
 cv2.namedWindow('preview')
 vc = cv2.VideoCapture(0)
 
@@ -14,13 +14,21 @@ else:
     rval = False
 
 while rval:
-    cv2.imshow('preview', frame)
+    # code from https://medium.com/analytics-vidhya/hand-detection-and-finger-counting-using-opencv-python-5b594704eb08
+    hsvim = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+    lower = np.array([0, 48, 80], dtype = "uint8")
+    upper = np.array([20, 255, 255], dtype = "uint8")
+    skinRegionHSV = cv2.inRange(hsvim, lower, upper)
+    blurred = cv2.blur(skinRegionHSV, (2,2))
+    ret,thresh = cv2.threshold(blurred,0,255,cv2.THRESH_BINARY)
+    cv2.imshow('preview', thresh)
+
     rval, frame = vc.read()
     key = cv2.waitKey(20)
     if key == 27: # exit on escape key press
         break
 cv2.destroyWindow("preview")
-'''
+
 
 # uncomment this to test pytorch
 '''
