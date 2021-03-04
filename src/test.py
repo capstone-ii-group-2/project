@@ -23,7 +23,11 @@ while rval:
     ret,thresh = cv2.threshold(blurred,0,255,cv2.THRESH_BINARY)
     cv2.imshow('preview', thresh)
     contours, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-    contours = max(contours, key=lambda x: cv2.contourArea(x))
+    #try: 
+    #    contours = max(contours, key=lambda x: cv2.contourArea(x))
+    #except:
+    #    print('oops')
+
     cv2.drawContours(frame, [contours], -1, (255,255,0), 2)
     cv2.imshow("contours", frame)
 
