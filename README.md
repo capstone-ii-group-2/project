@@ -28,6 +28,15 @@
 
 [Another Dataset](http://vlm1.uta.edu/~athitsos/asl_lexicon/) - Another dataset that we could possibly use
 
+
+## Using the Kaggle dataset
+1. Download [this](https://www.kaggle.com/grassknoted/asl-alphabet) dataset
+2. Unzip the dataset
+3. Move both ```asl_alphabet_train``` and ```asl_alphabet_test``` into the ```training_datasets``` folder
+    * __IMPORTANT!__ Make sure the path for both looks like this: ```training_datasets/asl_alphabet_<train OR test>/<data>``` as the dataset directories are structured like ```asl_alphabet_train/asl_alphabet_<train OR test>/<data>``` in the zipped folder
+4. You are now ready to use the dataset
+
+
 ## Making your own dataset
 1. Open the [Google Teachable Machine](https://teachablemachine.withgoogle.com/) website and click 'Get Started' in the upper right hand corner.
 2. Pick the 'Image Project' from the list
