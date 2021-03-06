@@ -13,33 +13,39 @@ if vc.isOpened(): # attempt to get the first frame
 else:
     rval = False
 
+img = cv2.imread('training_datasets/asl_alphabet_train/B/B713.jpg', 0)
+
 while rval:
     # code from https://medium.com/analytics-vidhya/hand-detection-and-finger-counting-using-opencv-python-5b594704eb08
+    # code for Canny https://hub.packtpub.com/opencv-detecting-edges-lines-shapes/
+    #cv2.imwrite('testing.jpg', cv2.Canny(img, 200, 300))
+    #cv2.imshow('canny', cv2.imread('testing.jpg'))
+
     hsvim = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
     lower = np.array([0, 48, 80], dtype = "uint8")
     upper = np.array([20, 255, 255], dtype = "uint8")
     skinRegionHSV = cv2.inRange(hsvim, lower, upper)
     blurred = cv2.blur(skinRegionHSV, (2,2))
     ret,thresh = cv2.threshold(blurred,0,255,cv2.THRESH_BINARY)
-    cv2.imshow('preview', thresh)
-    contours, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    cv2.imshow('preview', cv2.Canny(frame, 200, 300))
+    #contours, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     #try: 
     #contours = max(contours, key=lambda x: cv2.contourArea(x),default=0)
     #except:
     #    print('oops')
-
-    cv2.drawContours(frame, contours, -1, (255,255,0), 2)
-    cv2.imshow("contours", frame)
-
-    #-------------------------------------------------------
-    #   HULL CHANGES
-    #-------------------------------------------------------
-    for i in range(len(contours)):
-        hull = cv2.convexHull(contours[i])
-        cv2.drawContours(frame, [hull], -1, (255, 0, 0), 2)
-    
-    cv2.imshow("hull", frame)   
-    #-------------------------------------------------------
+    #contours = max(contours, key=lambda x: cv2.contourArea(x),default=0)
+    #cv2.drawContours(frame, contours, -1, (255,255,0), 2)
+    #cv2.imshow("contours", frame)
+#
+    ##-------------------------------------------------------
+    ##   HULL CHANGES
+    ##-------------------------------------------------------
+    #for i in range(len(contours)):
+    #    hull = cv2.convexHull(contours[i])
+    #    cv2.drawContours(frame, [hull], -1, (255, 0, 0), 2)
+    #
+    #cv2.imshow("hull", frame)   
+    ##-------------------------------------------------------
 
 
     rval, frame = vc.read()
