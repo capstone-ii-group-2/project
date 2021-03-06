@@ -1,0 +1,1 @@
+here is a placeholder file to keep the training_datasets folder because I don't know how to use .gitignore
