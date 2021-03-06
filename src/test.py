@@ -2,10 +2,11 @@ import cv2
 import torch
 import math
 import numpy as np
+import time
 
 # uncomment this to test your webcam
 
-cv2.namedWindow('preview')
+#cv2.namedWindow('preview')
 vc = cv2.VideoCapture(0)
 
 if vc.isOpened(): # attempt to get the first frame
@@ -13,21 +14,23 @@ if vc.isOpened(): # attempt to get the first frame
 else:
     rval = False
 
-img = cv2.imread('training_datasets/asl_alphabet_train/B/B713.jpg', 0)
+#img = cv2.imread('training_datasets/asl_alphabet_train/B/B713.jpg', 0)
+img_number = 1
 
-while rval:
+while rval and img_number < 3001:
     # code from https://medium.com/analytics-vidhya/hand-detection-and-finger-counting-using-opencv-python-5b594704eb08
     # code for Canny https://hub.packtpub.com/opencv-detecting-edges-lines-shapes/
     #cv2.imwrite('testing.jpg', cv2.Canny(img, 200, 300))
     #cv2.imshow('canny', cv2.imread('testing.jpg'))
-
-    hsvim = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-    lower = np.array([0, 48, 80], dtype = "uint8")
-    upper = np.array([20, 255, 255], dtype = "uint8")
-    skinRegionHSV = cv2.inRange(hsvim, lower, upper)
-    blurred = cv2.blur(skinRegionHSV, (2,2))
-    ret,thresh = cv2.threshold(blurred,0,255,cv2.THRESH_BINARY)
-    cv2.imshow('preview', cv2.Canny(frame, 200, 300))
+    time.sleep(0.01)
+    img = cv2.imread('training_datasets/asl_alphabet_train/B/B'+ str(img_number)+'.jpg', 0)
+    #hsvim = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+    #lower = np.array([0, 48, 80], dtype = "uint8")
+    #upper = np.array([20, 255, 255], dtype = "uint8")
+    #skinRegionHSV = cv2.inRange(hsvim, lower, upper)
+    #blurred = cv2.blur(skinRegionHSV, (2,2))
+    #ret,thresh = cv2.threshold(blurred,0,255,cv2.THRESH_BINARY)
+    cv2.imshow('B', cv2.Canny(img, 200, 300))
     #contours, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     #try: 
     #contours = max(contours, key=lambda x: cv2.contourArea(x),default=0)
@@ -46,13 +49,14 @@ while rval:
     #
     #cv2.imshow("hull", frame)   
     ##-------------------------------------------------------
-
-
+    print(img_number)
+    img_number = img_number + 1
     rval, frame = vc.read()
+    #cv2.destroyWindow(str(img_number))
     key = cv2.waitKey(20)
     if key == 27: # exit on escape key press
         break
-cv2.destroyWindow("preview")
+cv2.destroyAllWindows()
 
 
 # uncomment this to test pytorch
