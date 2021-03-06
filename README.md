@@ -16,13 +16,13 @@
 ## Useful Links
 [Sign Language Interpreter using Deep Learning](https://github.com/harshbg/Sign-Language-Interpreter-using-Deep-Learning) - Very close to what we want to achieve
 
-[Tensorflow](https://www.tensorflow.org/) - A library we will be using for this project
+[PyTorch](https://pytorch.org/) - The library we will be using to train the model
 
 [Webcam Tutorial](https://stackoverflow.com/questions/604749/how-do-i-access-my-webcam-in-python) - Page with the example I followed tog et the webcam running
 
 ## Datasets
 
-[Dataset for Sign Language](https://www.kaggle.com/datamunge/sign-language-mnist) - Sign language dataset to train the model (we probably won't use this)
+[Dataset for Sign Language](https://www.kaggle.com/grassknoted/asl-alphabet) - Sign language dataset to train the model
 
 [Google Teachable Machine](https://teachablemachine.withgoogle.com/) - Thing we might have to use to create our own dataset
 
