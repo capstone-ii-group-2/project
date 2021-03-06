@@ -4,8 +4,7 @@ import math
 import numpy as np
 
 # uncomment this to test your webcam
-
-cv2.namedWindow('preview')
+""" cv2.namedWindow('preview')
 vc = cv2.VideoCapture(0)
 
 if vc.isOpened(): # attempt to get the first frame
@@ -29,7 +28,7 @@ while rval:
     #    print('oops')
 
     cv2.drawContours(frame, contours, -1, (255,255,0), 2)
-    cv2.imshow("contours", frame)
+    #cv2.imshow("contours", frame)
 
     #-------------------------------------------------------
     #   HULL CHANGES
@@ -46,7 +45,7 @@ while rval:
     key = cv2.waitKey(20)
     if key == 27: # exit on escape key press
         break
-cv2.destroyWindow("preview")
+cv2.destroyWindow("preview") """
 
 
 # uncomment this to test pytorch
