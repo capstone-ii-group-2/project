@@ -1,2 +1,3 @@
 training_datasets/*/*
 .idea/*
+*.pth
