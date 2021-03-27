@@ -21,7 +21,7 @@ def run():
     test_size = 0.2
     batch_size = 32
     global num_epoch
-    num_epoch = 10
+    num_epoch = 5
     learning_rate = 0.001
     num_classes = 29
 
@@ -67,8 +67,8 @@ def run():
         return
     except Exception:
         print('no model found, training machine to build one')
-        return
         train_model()
+        return
 
 
 
