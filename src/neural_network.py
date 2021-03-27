@@ -60,6 +60,7 @@ def run():
     global model
 
     try:
+        # to use with cpu change to model = torch.load('testmodel.pth', map_location=torch.device('cpu'))
         model = torch.load('testmodel.pth')
         model.eval()
         test_model()
