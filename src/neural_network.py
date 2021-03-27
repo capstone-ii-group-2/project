@@ -6,6 +6,7 @@ from torch import optim
 import torch.nn.functional as f
 from torchvision import datasets, transforms, models
 
+
 def run():
     training_path = 'training_datasets/datasets/asl_alphabet_train'
     testing_path = 'training_datasets/datasets/asl_alphabet_test'
@@ -39,14 +40,15 @@ def run():
     test_dataloader = torch.utils.data.DataLoader(dataset=test_dataset,batch_size=batch_size)
     print(classes)
     print(len(classes))
-    return
-    #device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    device = torch.device('cpu')
+
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    print(device)
+    #device = torch.device('cpu')
     model = models.resnet50(pretrained=True)
     for param in model.parameters():
             param.requires_grad = False
 
-    model.fc = nn.Sequential(nn.Linear(2048, 512), nn.ReLU(), nn.Dropout(0.2), nn.Linear(512,10), nn.LogSoftmax(dim=1))
+    model.fc = nn.Sequential(nn.Linear(2048, 512), nn.ReLU(), nn.Dropout(0.2), nn.Linear(512,29), nn.LogSoftmax(dim=1))
     criterion = nn.NLLLoss()
     optimizer = optim.Adam(model.fc.parameters(), lr=0.003)
     model.to(device)
@@ -61,6 +63,7 @@ def run():
     for epoch in range(num_epoch):
         for inputs, labels in train_dataloader:
             steps +=1
+            print('step: ' + str(steps))
             inputs, labels = inputs.to(device), labels.to(device)
             optimizer.zero_grad()
             logps = model.forward(inputs)
@@ -99,5 +102,6 @@ def run():
     plt.legend(frameon=False)
     plt.show()
 
-if __name__=="__main__":
+
+if __name__ == "__main__":
     run()
