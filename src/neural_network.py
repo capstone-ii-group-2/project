@@ -1,4 +1,5 @@
 import numpy as np
+import cv2
 import matplotlib.pyplot as plt
 from PIL import Image
 #from PIL import Variable
@@ -63,7 +64,8 @@ def run():
         # to use with cpu change to model = torch.load('testmodel.pth', map_location=torch.device('cpu'))
         model = torch.load('testmodel.pth')
         model.eval()
-        test_model()
+        run_webcam()
+        #test_model()
         print('tested!')
         return
     except Exception:
@@ -151,14 +153,41 @@ def test_model():
     plt.show()
 
 
+
+def run_webcam():
+    cv2.namedWindow('preview')
+    vc = cv2.VideoCapture(0)
+    if vc.isOpened():  # attempt to get the first frame
+        # rval determines whether to keep running
+        # frame is the actual image from the webcam
+        rval, frame = vc.read()
+    else:
+        rval = False
+
+    while rval:
+        # code from https://medium.com/analytics-vidhya/hand-detection-and-finger-counting-using-opencv-python-5b594704eb08
+        image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        image = Image.fromarray(image)
+        prediction = predict_image(image)
+        print('predicted as ' + prediction)
+        cv2.imshow('preview', frame)
+        rval, frame = vc.read()
+        key = cv2.waitKey(20)
+        if key == 27:  # exit on escape key press
+            break
+    cv2.destroyWindow("preview")
+
+
 def predict_image(image):
-    image_tensor = test_transforms(image).float()
-    image_tensor = image_tensor.unsqueeze_(0)
-    input = Variable(image_tensor)
-    input = input.to(device)
-    output = model(input)
+    # TODO: delete line below if unnecesary
+    #image = transforms.ToPILImage(image) # converting to image we can use
+
+    img_tensor = test_transforms(image).cuda() # TODO: might replace .cuda with .float if there are issues with CPU only machines
+    img_tensor = img_tensor.unsqueeze(0)
+    output = model(img_tensor)
     index = output.data.cpu().numpy().argmax()
-    return index
+
+    return classes[index]
 
 def get_random_images(num):
     data = datasets.ImageFolder(training_path, transform=test_transforms)
