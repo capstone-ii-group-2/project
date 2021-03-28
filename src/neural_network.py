@@ -68,7 +68,9 @@ def run():
         #test_model()
         print('tested!')
         return
-    except Exception:
+    except Exception as e:
+        print(e)
+        return
         print('no model found, training machine to build one')
         train_model()
         return
