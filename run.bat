@@ -1,1 +1,1 @@
-py src\neural_network.py
+python src\neural_network.py
