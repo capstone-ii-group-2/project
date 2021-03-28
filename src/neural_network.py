@@ -167,10 +167,11 @@ def run_webcam():
     while rval:
         # code from https://medium.com/analytics-vidhya/hand-detection-and-finger-counting-using-opencv-python-5b594704eb08
         image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        image = Image.fromarray(image)
-        prediction = predict_image(image)
+        image2 = Image.fromarray(image)
+        prediction = predict_image(image2)
         print('predicted as ' + prediction)
         cv2.imshow('preview', frame)
+        cv2.imshow('preview2', image)
         rval, frame = vc.read()
         key = cv2.waitKey(20)
         if key == 27:  # exit on escape key press
