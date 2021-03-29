@@ -4,7 +4,7 @@ import math
 import numpy as np
 
 # uncomment this to test your webcam
-
+'''
 cv2.namedWindow('preview')
 vc = cv2.VideoCapture(0)
 
@@ -47,10 +47,10 @@ while rval:
     if key == 27: # exit on escape key press
         break
 cv2.destroyWindow("preview")
-
+'''
 
 # uncomment this to test pytorch
-'''
+
 dtype = torch.float
 device = torch.device("cpu")
 # device = torch.device("cuda:0") # Uncomment this to run on GPU
@@ -90,4 +90,4 @@ for t in range(2000):
 
 
 print(f'Result: y = {a.item()} + {b.item()} x + {c.item()} x^2 + {d.item()} x^3')
-'''
+
