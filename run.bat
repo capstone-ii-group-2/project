@@ -1,1 +1,1 @@
-python src\neural_network.py
+python train/run_model.py

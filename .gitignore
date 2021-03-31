@@ -2,3 +2,4 @@ training_datasets/*/*
 .idea/*
 *.pth
 src/__pycache__/*
+train/__pycache__/*
