@@ -1,4 +1,5 @@
 import numpy as np
+import math
 import cv2
 import matplotlib.pyplot as plt
 from PIL import Image
@@ -8,6 +9,7 @@ from torch import nn
 from torch import optim
 import torch.nn.functional as f
 from torchvision import datasets, transforms, models
+#import model as model_custom
 from torch.autograd import Variable
 
 
@@ -22,7 +24,7 @@ def run():
     test_size = 0.2
     batch_size = 32
     global num_epoch
-    num_epoch = 5
+    num_epoch = 4 # this variable no longer used
     learning_rate = 0.001
     num_classes = 29
 
@@ -70,7 +72,6 @@ def run():
         return
     except Exception as e:
         print(e)
-        return
         print('no model found, training machine to build one')
         train_model()
         return
@@ -88,16 +89,16 @@ def train_model():
     model.to(device)
     print(model)
 
-    epochs = 1
+    epochs = 2
     steps = 0
     running_loss = 0
     print_every = 10
     train_losses, test_losses = [], []
 
-    for epoch in range(num_epoch):
+    for epoch in range(epochs):
         for inputs, labels in train_dataloader:
             steps += 1
-            print('step: ' + str(steps))
+            # print('step: ' + str(steps))
             inputs, labels = inputs.to(device), labels.to(device)
             optimizer.zero_grad()
             logps = model.forward(inputs)
@@ -167,6 +168,8 @@ def run_webcam():
         rval = False
     MAX_HEIGHT = frame.shape[0]
     MAX_WIDTH = frame.shape[1]
+    predictions = []
+    prediction: str
     while rval:
         # code from https://medium.com/analytics-vidhya/hand-detection-and-finger-counting-using-opencv-python-5b594704eb08
         #converted_image = frame[:, :, [0, 1, 2]]
@@ -181,14 +184,26 @@ def run_webcam():
         #print(frame.shape[0])
         #print(frame.shape[1])
         subsection = converted_image[y:y+height, x:x+width].copy()
+
+        #subsection_resized = cv2.resize(subsection, (0,0), fx=0.5, fy=0.5)
+        #subsection_canny = cv2.Canny(subsection, 150, 250)
         converted_image_values = Image.fromarray(subsection)
 
 
-        prediction = predict_image(converted_image_values)
-
-
-        print('predicted as ' + prediction)
-        cv2.imshow('preview', frame)
+        #frame_prediction = predict_image(converted_image_values)
+        #predictions.append(frame_prediction)
+        #if len(predictions) == 15:
+        #    prediction = average_prediction(predictions)
+        #    print('predicted as ' + classes[prediction])
+        #    predictions = []
+        frame_prediction = predict_image(converted_image_values)
+        print('predicted as ' + classes[frame_prediction])
+        upper_left_corner = (x, y)
+        bottom_right_corner = (x + width, y + height)
+        color = (255, 0, 0)
+        thickness = 2
+        frame_with_rectangle = cv2.rectangle(frame, upper_left_corner, bottom_right_corner, color, thickness)
+        cv2.imshow('preview', frame_with_rectangle)
         #cv2.imshow('preview2', converted_image)
         cv2.imshow('subsection', subsection)
         rval, frame = vc.read()
@@ -197,6 +212,16 @@ def run_webcam():
             break
     #cv2.destroyWindow("preview")
     cv2.destroyAllWindows()
+
+def average_prediction(predictions):
+    pred_sum = sum(predictions)
+
+    pred_sum = pred_sum / len(predictions)
+    if (pred_sum - math.floor(pred_sum)) < 0.5:
+        return math.ceil(pred_sum)
+    else:
+        return math.floor(pred_sum)
+
 
 
 def predict_image(image):
@@ -208,7 +233,7 @@ def predict_image(image):
     output = model(img_tensor)
     index = output.data.cpu().numpy().argmax()
 
-    return classes[index]
+    return index
 
 def get_random_images(num):
     data = datasets.ImageFolder(training_path, transform=test_transforms)
