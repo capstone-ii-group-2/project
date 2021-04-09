@@ -9,7 +9,8 @@ from torch import nn
 from torch import optim
 import torch.nn.functional as f
 from torchvision import datasets, transforms, models
-#import model as model_custom
+#from model2 import CNN
+import model as model_custom
 from torch.autograd import Variable
 
 
