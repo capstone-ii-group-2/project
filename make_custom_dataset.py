@@ -59,6 +59,10 @@ KEY_TO_LETTER_DICT = {
     89: "Y",
     122: "Z",
     90: "Z",
+    32: "space",  # press spacebar for space
+    92: "del",  # press \ key for del
+    47: "nothing"  # press / key for nothing
+
 }
 
 CHAR_LIST = ['A', 'B', 'C', 'D', 'E',
@@ -143,7 +147,7 @@ def run():
         # cv2.imshow('preview2', converted_image)
         cv2.imshow('subsection', subsection)
 
-        if (key <= 90 and key >= 65) or (key <= 122 and key >= 97):
+        if (key <= 90 and key >= 65) or (key <= 122 and key >= 97) or key == 32 or key == 92 or key == 47:
             print(KEY_TO_LETTER_DICT[key])
             print('========RECORDING STARTING FOR ' + KEY_TO_LETTER_DICT[key] + '========')
             record_and_write(KEY_TO_LETTER_DICT[key], current_dir)
@@ -203,7 +207,7 @@ def record_and_write(letter, current_dir):
         # ADJUST SPEED HERE
         # waitkey() takes in milliseconds as its parameter and waits that long for a keypress
         # this determines how fast you can write images
-        key = cv2.waitKey(50)
+        key = cv2.waitKey(20)
 
         pic_write_path = base_write_path + letter + str(pic_num) + '.jpg'
         write_image(pic_write_path, subsection)
