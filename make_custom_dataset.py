@@ -1,4 +1,5 @@
 import cv2, sys, os
+import re
 from PIL import Image
 import numpy as np
 
@@ -163,9 +164,20 @@ def record_and_write(letter, current_dir):
     base_write_path = current_dir + '/' + letter + '/'
     #print(base_write_path)
     pic_list = os.scandir(base_write_path)
+    pic_nums: list = []
     pic_num = 1
+    # get pic numbers from pic list
     for pic in pic_list:
+        find_numbers = re.findall(r'\d+', pic.name)
+        pic_number = list(map(int, find_numbers))
+        pic_nums.append(pic_number[0])
+
+    # gets the largest number  in pic list
+    if len(pic_nums) > 0:
+        pic_nums.sort()
+        pic_num = pic_nums[len(pic_nums) - 1]
         pic_num += 1
+        print("There are already " + str(len(pic_nums)) + ' pictures for this entry, starting at picture number ' + str(pic_num))
 
     rval, frame = vc.read()
     while rval:
