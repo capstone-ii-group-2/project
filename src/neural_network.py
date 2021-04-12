@@ -97,6 +97,16 @@ def train_model():
     train_losses, test_losses = [], []
 
     for epoch in range(epochs):
+        #if epoch < 4:
+        #    for g in optimizer.param_groups:
+        #        if epoch == 1:
+        #            g['lr'] = 0.1
+        #        elif epoch == 2:
+        #            g['lr'] = 0.01
+        #        elif epoch == 3:
+        #            g['lr'] = 0.001
+
+
         for inputs, labels in train_dataloader:
             steps += 1
             # print('step: ' + str(steps))
@@ -184,7 +194,8 @@ def run_webcam():
         #print(frame.size)
         #print(frame.shape[0])
         #print(frame.shape[1])
-        subsection = converted_image[y:y+height, x:x+width].copy()
+        #subsection = converted_image[y:y+height, x:x+width].copy()
+        subsection = frame[y:y+height, x:x+width].copy()
 
         #subsection_resized = cv2.resize(subsection, (0,0), fx=0.5, fy=0.5)
         #subsection_canny = cv2.Canny(subsection, 150, 250)
