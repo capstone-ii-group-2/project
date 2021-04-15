@@ -18,9 +18,9 @@ from torch.autograd import Variable
 
 def run():
     global training_path
-    training_path = 'training_datasets/datasets/asl_alphabet_train'
+    training_path = 'training_datasets/datasets/merged_dataset_train'
     global testing_path
-    testing_path = 'training_datasets/datasets/asl_alphabet_test'
+    testing_path = 'training_datasets/datasets/merged_dataset_test'
 
     test_size = 0.2
     batch_size = 32
@@ -65,7 +65,7 @@ def run():
 
     try:
         # to use with cpu change to model = torch.load('testmodel.pth', map_location=torch.device('cpu'))
-        model = torch.load('testmodel.pth')
+        model = torch.load('combo_model.pth')
         model.eval()
         run_webcam()
         #test_model()
@@ -74,9 +74,43 @@ def run():
     except Exception as e:
         print(e)
         print('no model found, training machine to build one')
-        train_model()
+        train_model_2()
         return
 
+def train_model_2():
+    print('RUNNING TRAIN MODEL 2')
+    model = models.resnet50(pretrained=True)
+    for param in model.parameters():
+        param.requires_grad = False
+
+    model.fc = nn.Sequential(nn.Linear(2048, 512), nn.ReLU(), nn.Dropout(0.2), nn.Linear(512, 29), nn.LogSoftmax(dim=1))
+    criterion = nn.NLLLoss()
+    optimizer = optim.Adam(model.fc.parameters(), lr=0.003)
+    model.to(device)
+    print(model)
+
+    epochs = 10
+    steps = 0
+
+    # this found here https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html
+    print_every = 20
+    for epoch in range(epochs):
+        running_loss = 0.0
+        for i, data in enumerate(train_dataloader, 0):
+            inputs, labels = data[0].to(device), data[1].to(device)
+
+            optimizer.zero_grad()
+            outputs = model(inputs)
+            loss = criterion(outputs, labels)
+            loss.backward()
+            optimizer.step()
+            running_loss += loss.item()
+            if i % print_every == print_every-1:
+                print('[%d, %5d] loss: %.3f' %
+                      (epoch + 1, i + 1, running_loss / 2000))
+                running_loss = 0.0
+    torch.save(model, 'combo_model.pth')
+    print('Im done')
 
 
 def train_model():
