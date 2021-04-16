@@ -20,7 +20,7 @@ def run():
     global training_path
     training_path = 'training_datasets/datasets/merged_dataset_train'
     global testing_path
-    testing_path = 'training_datasets/datasets/merged_dataset_test'
+    testing_path = 'training_datasets/datasets/asl_alphabet_test'
 
     test_size = 0.2
     batch_size = 32
@@ -89,7 +89,7 @@ def train_model_2():
     model.to(device)
     print(model)
 
-    epochs = 10
+    epochs = 5
     steps = 0
 
     # this found here https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html
@@ -242,14 +242,26 @@ def run_webcam():
         #    prediction = average_prediction(predictions)
         #    print('predicted as ' + classes[prediction])
         #    predictions = []
-        frame_prediction = predict_image(converted_image_values)
-        print('predicted as ' + classes[frame_prediction])
+
+        #print('predicted as ' + classes[frame_prediction])
         upper_left_corner = (x, y)
         bottom_right_corner = (x + width, y + height)
         color = (255, 0, 0)
         thickness = 2
         frame_with_rectangle = cv2.rectangle(frame, upper_left_corner, bottom_right_corner, color, thickness)
-        cv2.imshow('preview', frame_with_rectangle)
+        text_background_br_corner = (MAX_WIDTH, MAX_HEIGHT)
+        text_background_ul_corner = (MAX_WIDTH - 150, MAX_HEIGHT - 150)
+        text_background_color = (0, 0, 0)
+        frame_formatted = cv2.rectangle(frame_with_rectangle, text_background_ul_corner, text_background_br_corner, text_background_color, -1)
+        frame_prediction = predict_image(converted_image_values)
+        sign = classes[frame_prediction]
+        text_font = cv2.FONT_HERSHEY_SIMPLEX
+        text_bl_corner = (MAX_WIDTH - 125, MAX_HEIGHT - 70)
+        size = 1
+        text_color = (255, 255, 255)
+        linetype = 2
+        cv2.putText(img=frame_formatted, text=sign, org=text_bl_corner, fontFace=text_font, fontScale=size, color=text_color, lineType=linetype)
+        cv2.imshow('preview', frame_formatted)
         #cv2.imshow('preview2', converted_image)
         cv2.imshow('subsection', subsection)
         rval, frame = vc.read()
