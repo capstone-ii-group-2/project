@@ -96,8 +96,10 @@ def train_model_2():
     print_every = 20
     for epoch in range(epochs):
         running_loss = 0.0
-        for i, data in enumerate(train_dataloader, 0):
-            inputs, labels = data[0].to(device), data[1].to(device)
+        steps = 0
+        for inputs, labels in train_dataloader:
+            steps = steps + 1
+            inputs, labels = inputs.to(device), labels.to(device)
 
             optimizer.zero_grad()
             outputs = model(inputs)
@@ -105,9 +107,9 @@ def train_model_2():
             loss.backward()
             optimizer.step()
             running_loss += loss.item()
-            if i % print_every == print_every-1:
+            if steps % print_every == print_every-1:
                 print('[%d, %5d] loss: %.3f' %
-                      (epoch + 1, i + 1, running_loss / 2000))
+                      (epoch + 1, steps + 1, running_loss / 2000))
                 running_loss = 0.0
     torch.save(model, 'combo_model.pth')
     print('Im done')
@@ -118,7 +120,7 @@ def train_model():
     for param in model.parameters():
         param.requires_grad = False
 
-    model.fc = nn.Sequential(nn.Linear(2048, 512), nn.ReLU(), nn.Dropout(0.2), nn.Linear(512, 29), nn.LogSoftmax(dim=1))
+    model.fc = nn.Sequential(nn.Linear(2048, 512), nn.ReLU(), nn.Dropout(0.2), nn.Linear(512, 27), nn.LogSoftmax(dim=1))
     criterion = nn.NLLLoss()
     optimizer = optim.Adam(model.fc.parameters(), lr=0.003)
     model.to(device)
