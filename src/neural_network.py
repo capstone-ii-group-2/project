@@ -34,12 +34,12 @@ def run():
     # define train dataset loader
     global train_dataloader
     train_dataloader = torch.utils.data.DataLoader(dataset=train_dataset,batch_size=batch_size,shuffle=True,num_workers=4)
-    global classes
-    classes = project_globals.CLASSES
+    #global classes
+    #classes = project_globals.CLASSES
     global test_dataloader
     test_dataloader = torch.utils.data.DataLoader(dataset=test_dataset,batch_size=batch_size)
-    print(classes)
-    print(len(classes))
+    #print(classes)
+    #print(len(classes))
     return
     global device
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -180,7 +180,7 @@ def test_model():
         index = predict_image(image)
         sub = fig.add_subplot(1, len(images), ii + 1)
         res = int(labels[ii]) == index
-        sub.set_title(str(classes[index]) + ":" + str(res))
+        sub.set_title(str(project_globals.CLASSES[index]) + ":" + str(res))
         plt.axis('off')
         plt.imshow(image)
     plt.show()
@@ -239,7 +239,7 @@ def run_webcam():
         text_background_color = (0, 0, 0)
         frame_formatted = cv2.rectangle(frame_with_rectangle, text_background_ul_corner, text_background_br_corner, text_background_color, -1)
         frame_prediction = predict_image(converted_image_values)
-        sign = classes[frame_prediction]
+        sign = project_globals.CLASSES[frame_prediction]
         text_font = cv2.FONT_HERSHEY_SIMPLEX
         text_bl_corner = (MAX_WIDTH - 125, MAX_HEIGHT - 70)
         size = 1
@@ -279,7 +279,7 @@ def predict_image(image):
     return index
 
 def get_random_images(num):
-    data = datasets.ImageFolder(training_path, transform=test_transforms)
+    data = datasets.ImageFolder(project_globals.TESTING_PATH, transform=test_transforms)
     classes = data.classes
     indices = list(range(len(data)))
     np.random.shuffle(indices)

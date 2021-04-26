@@ -33,8 +33,7 @@ def run_webcam():
         rval = False
     MAX_HEIGHT = frame.shape[0]
     MAX_WIDTH = frame.shape[1]
-    predictions = []
-    prediction: str
+
     while rval:
         # code from https://medium.com/analytics-vidhya/hand-detection-and-finger-counting-using-opencv-python-5b594704eb08
 
