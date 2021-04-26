@@ -11,53 +11,36 @@ import torch.nn.functional as f
 from torchvision import datasets, transforms, models
 #from model2 import CNN
 import model as model_custom
+import project_globals
 from torch.autograd import Variable
 
 
 # most of this code is from https://towardsdatascience.com/how-to-train-an-image-classifier-in-pytorch-and-use-it-to-perform-basic-inference-on-single-images-99465a1e9bf5
 
 def run():
-    global training_path
-    training_path = 'training_datasets/datasets/merged_dataset_train'
-    global testing_path
-    testing_path = 'training_datasets/datasets/asl_alphabet_test'
 
-    test_size = 0.2
     batch_size = 32
-    global num_epoch
-    num_epoch = 4 # this variable no longer used
-    learning_rate = 0.001
-    num_classes = 29
 
     # define transformations for datasets
     global train_transforms
     global test_transforms
-    train_transforms = transforms.Compose([
-        transforms.Resize(224),
-        transforms.ToTensor()
-    ])
-
-    test_transforms = transforms.Compose([
-        transforms.Resize(224),
-        transforms.ToTensor()
-    ])
+    train_transforms = project_globals.TRANSFORMS
+    test_transforms = project_globals.TRANSFORMS
 
     # load datasets
-    train_dataset = datasets.ImageFolder(training_path, transform=train_transforms)
-    test_dataset = datasets.ImageFolder(testing_path, transform=test_transforms)
-    num_train = len(train_dataset)
-    print(train_dataset)
+    train_dataset = datasets.ImageFolder(project_globals.TRAINING_PATH, transform=train_transforms)
+    test_dataset = datasets.ImageFolder(project_globals.TESTING_PATH, transform=test_transforms)
 
     # define train dataset loader
     global train_dataloader
     train_dataloader = torch.utils.data.DataLoader(dataset=train_dataset,batch_size=batch_size,shuffle=True,num_workers=4)
     global classes
-    classes = train_dataloader.dataset.classes
+    classes = project_globals.CLASSES
     global test_dataloader
     test_dataloader = torch.utils.data.DataLoader(dataset=test_dataset,batch_size=batch_size)
     print(classes)
     print(len(classes))
-
+    return
     global device
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print(device)
