@@ -1,17 +1,8 @@
-import numpy as np
-import math
-import cv2
-import matplotlib.pyplot as plt
-from PIL import Image
-#from PIL import Variable
 import torch
 from torch import nn
 from torch import optim
-import torch.nn.functional as f
-from torchvision import datasets, transforms, models
-#from model2 import CNN
+from torchvision import datasets, models
 import project_globals
-from torch.autograd import Variable
 
 # most of this code is from https://towardsdatascience.com/how-to-train-an-image-classifier-in-pytorch-and-use-it-to-perform-basic-inference-on-single-images-99465a1e9bf5
 
@@ -25,11 +16,9 @@ def run():
 
     # define transformations for datasets
     train_transforms = project_globals.TRANSFORMS
-    test_transforms = project_globals.TRANSFORMS
 
     # load datasets
     train_dataset = datasets.ImageFolder(project_globals.TRAINING_PATH, transform=train_transforms)
-    test_dataset = datasets.ImageFolder(project_globals.TESTING_PATH, transform=test_transforms)
 
     # define train dataset loader
     global train_dataloader
@@ -37,7 +26,6 @@ def run():
     global device
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print(device)
-
     train_model()
     return
 
@@ -46,7 +34,7 @@ def train_model():
     for param in model.parameters():
         param.requires_grad = False
 
-    model.fc = nn.Sequential(nn.Linear(2048, 512), nn.ReLU(), nn.Dropout(0.2), nn.Linear(512, 29), nn.LogSoftmax(dim=1))
+    model.fc = nn.Sequential(nn.Linear(2048, 512), nn.ReLU(), nn.Dropout(0.2), nn.Linear(512, 27), nn.LogSoftmax(dim=1))
     criterion = nn.NLLLoss()
     optimizer = optim.Adam(model.fc.parameters(), lr=0.003)
     model.to(device)
@@ -73,7 +61,7 @@ def train_model():
                 print('[%d, %5d] loss: %.3f' %
                       (epoch + 1, steps + 1, running_loss / print_every))
                 running_loss = 0.0
-    torch.save(model, 'combo_model.pth')
+    torch.save(model, 'combo_model.mdl')
     print('Im done')
 
 

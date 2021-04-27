@@ -1,14 +1,6 @@
-import numpy as np
-import math
 import cv2
-import matplotlib.pyplot as plt
 from PIL import Image
-#from PIL import Variable
 import torch
-from torch import nn
-from torch import optim
-import torch.nn.functional as f
-from torchvision import datasets, transforms, models
 import project_globals
 
 
@@ -17,7 +9,7 @@ model: any
 
 def run():
     global model
-    model = torch.load("combo_model.pth")
+    model = torch.load("combo_model.mdl")
     model.eval()
     run_webcam()
 
@@ -79,7 +71,6 @@ def run_webcam():
         key = cv2.waitKey(20)
         if key == 27:  # exit on escape key press
             break
-    # cv2.destroyWindow("preview")
     cv2.destroyAllWindows()
 
 
