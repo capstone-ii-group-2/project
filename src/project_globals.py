@@ -1,14 +1,4 @@
-import numpy as np
-import math
-import cv2
-import matplotlib.pyplot as plt
-from PIL import Image
-#from PIL import Variable
-import torch
-from torch import nn
-from torch import optim
-import torch.nn.functional as f
-from torchvision import datasets, transforms, models
+from torchvision import transforms
 
 
 # file for important stuff shared by a number of files

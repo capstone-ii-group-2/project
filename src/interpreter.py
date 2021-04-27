@@ -3,18 +3,30 @@ from PIL import Image
 import torch
 import project_globals
 
-
+device: any
 model: any
 
 
 def run():
     global model
-    model = torch.load("combo_model.mdl")
+    global device
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    if device == 'cuda':
+        model = torch.load("combo_model.mdl")
+    else:
+        model = torch.load(f="combo_model.mdl", map_location=torch.device('cpu'))
     model.eval()
     run_webcam()
 
 
 def run_webcam():
+    global device
+    pred_img: any
+    if device == 'cuda':
+        pred_img = predict_image_cuda
+    else:
+        pred_img = predict_image_cpu
+
     cv2.namedWindow('preview')
     vc = cv2.VideoCapture(0)
     if vc.isOpened():  # attempt to get the first frame
@@ -38,7 +50,7 @@ def run_webcam():
 
         # converting the image into something interpretable by the model, then interpreting it
         converted_image_values = Image.fromarray(subsection)
-        frame_prediction = predict_image(converted_image_values)
+        frame_prediction = pred_img(converted_image_values)
 
         # drawing the input box rectangle
         upper_left_corner = (x, y)
@@ -74,11 +86,20 @@ def run_webcam():
     cv2.destroyAllWindows()
 
 
-def predict_image(image):
+def predict_image_cuda(image):
     # TODO: delete line below if unnecesary
     #image = transforms.ToPILImage(image) # converting to image we can use
     global model
     img_tensor = project_globals.TRANSFORMS(image).cuda() # TODO: might replace .cuda with .float if there are issues with CPU only machines
+    img_tensor = img_tensor.unsqueeze(0)
+    output = model(img_tensor)
+    index = output.data.cpu().numpy().argmax()
+
+    return index
+
+def predict_image_cpu(image):
+    global model
+    img_tensor = project_globals.TRANSFORMS(image).float()  # TODO: might replace .cuda with .float if there are issues with CPU only machines
     img_tensor = img_tensor.unsqueeze(0)
     output = model(img_tensor)
     index = output.data.cpu().numpy().argmax()
