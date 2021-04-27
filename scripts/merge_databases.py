@@ -14,15 +14,15 @@ def run():
     exec_path: str = os.path.dirname(sys.executable)
 
     # SPECIFY TRAIN DATASETS HERE
-    first_train_dataset_dir: str = 'training_datasets/datasets/asl_alphabet_train'
+    first_train_dataset_dir: str = '../training_datasets/datasets/asl_alphabet_train'
     second_train_dataset_dir: str = 'training_datasets/datasets/custom_dataset_train'
-    merged_train_dataset_dir: str = 'training_datasets/datasets/merged_dataset_train'
+    merged_train_dataset_dir: str = '../training_datasets/datasets/merged_dataset_train'
     merge_datasets(first_train_dataset_dir, second_train_dataset_dir, merged_train_dataset_dir)
 
     # SPECIFY TEST DATASETS HERE
-    first_test_dataset_dir: str = 'training_datasets/datasets/asl_alphabet_test'
+    first_test_dataset_dir: str = '../training_datasets/datasets/asl_alphabet_test'
     second_test_dataset_dir: str = 'training_datasets/datasets/custom_dataset_test'
-    merged_test_dataset_dir: str = 'training_datasets/datasets/merged_dataset_test'
+    merged_test_dataset_dir: str = '../training_datasets/datasets/merged_dataset_test'
     merge_datasets(first_test_dataset_dir, second_test_dataset_dir, merged_test_dataset_dir)
 
 def merge_datasets(first_dir, second_dir, merge_dir):

@@ -7,11 +7,11 @@ def run():
 
     exec_path: str = os.path.dirname(sys.executable)
 
-    old_train_dataset_dir: str = 'training_datasets/datasets/asl_alphabet_train'
+    old_train_dataset_dir: str = '../training_datasets/datasets/asl_alphabet_train'
     new_train_dataset_dir: str = 'training_datasets/datasets/asl_alphabet_train_100'
     make_dataset(old_train_dataset_dir, new_train_dataset_dir)
 
-    old_test_dataset_dir: str = 'training_datasets/datasets/asl_alphabet_test'
+    old_test_dataset_dir: str = '../training_datasets/datasets/asl_alphabet_test'
     new_test_dataset_dir: str = 'training_datasets/datasets/asl_alphabet_test_100'
     make_dataset(old_test_dataset_dir, new_test_dataset_dir)
 
