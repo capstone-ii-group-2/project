@@ -1,1 +1,1 @@
-py src\test.py
+python src/interpreter.py
