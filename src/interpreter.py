@@ -11,10 +11,13 @@ def run():
     global model
     global device
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    if device == 'cuda':
+    if torch.cuda.is_available():
         model = torch.load("combo_model.mdl")
+        print("Using CUDA")
     else:
         model = torch.load(f="combo_model.mdl", map_location=torch.device('cpu'))
+        print("Using CPU")
+
     model.eval()
     run_webcam()
 
@@ -22,7 +25,7 @@ def run():
 def run_webcam():
     global device
     pred_img: any
-    if device == 'cuda':
+    if torch.cuda.is_available():
         pred_img = predict_image_cuda
     else:
         pred_img = predict_image_cpu
