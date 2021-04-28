@@ -29,6 +29,7 @@ def run():
     train_model()
     return
 
+
 def train_model():
     model = models.resnet50(pretrained=True)
     for param in model.parameters():
@@ -63,18 +64,6 @@ def train_model():
                 running_loss = 0.0
     torch.save(model, 'combo_model.mdl')
     print('Im done')
-
-
-def predict_image(image):
-    # TODO: delete line below if unnecesary
-    #image = transforms.ToPILImage(image) # converting to image we can use
-    global model
-    img_tensor = project_globals.TRANSFORMS(image).cuda() # TODO: might replace .cuda with .float if there are issues with CPU only machines
-    img_tensor = img_tensor.unsqueeze(0)
-    output = model(img_tensor)
-    index = output.data.cpu().numpy().argmax()
-
-    return index
 
 
 if __name__ == "__main__":

@@ -20,6 +20,7 @@ def run():
 
     model.eval()
     run_webcam()
+    return
 
 
 def run_webcam():
@@ -90,10 +91,8 @@ def run_webcam():
 
 
 def predict_image_cuda(image):
-    # TODO: delete line below if unnecesary
-    #image = transforms.ToPILImage(image) # converting to image we can use
     global model
-    img_tensor = project_globals.TRANSFORMS(image).cuda() # TODO: might replace .cuda with .float if there are issues with CPU only machines
+    img_tensor = project_globals.TRANSFORMS(image).cuda()
     img_tensor = img_tensor.unsqueeze(0)
     output = model(img_tensor)
     index = output.data.cpu().numpy().argmax()
@@ -102,7 +101,7 @@ def predict_image_cuda(image):
 
 def predict_image_cpu(image):
     global model
-    img_tensor = project_globals.TRANSFORMS(image).float()  # TODO: might replace .cuda with .float if there are issues with CPU only machines
+    img_tensor = project_globals.TRANSFORMS(image).float()
     img_tensor = img_tensor.unsqueeze(0)
     output = model(img_tensor)
     index = output.data.cpu().numpy().argmax()

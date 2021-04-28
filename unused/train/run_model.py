@@ -44,7 +44,7 @@ def run():
         mono_frame = cv2.cvtColor(resized_frame, cv2.COLOR_BGR2GRAY)
         mono_frame_formatted = torch.FloatTensor(mono_frame)
         test_var_sample = Variable(mono_frame_formatted)
-        prediction = model(test_var_sample) # TODO: this doesn't work, claims that it needs 4-dimensional weight but got 2-dimensional input instead
+        prediction = model(test_var_sample)
         #print(mono_frame.shape)
         #print(mono_frame.size)
         #print(mono_frame)
@@ -54,7 +54,7 @@ def run():
         #print(example_array.size)
         #print(example_array)
         #print(cv2.getWindowImageRect('preview'))
-        #formattedframe = reshape_to_2d(test_frame, 360) # TODO: this doesn't work
+        #formattedframe = reshape_to_2d(test_frame, 360)
 
 
         #reshape_to_2d(mono_frame,20)

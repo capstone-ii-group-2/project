@@ -266,10 +266,7 @@ def average_prediction(predictions):
 
 
 def predict_image(image):
-    # TODO: delete line below if unnecesary
-    #image = transforms.ToPILImage(image) # converting to image we can use
-
-    img_tensor = test_transforms(image).cuda() # TODO: might replace .cuda with .float if there are issues with CPU only machines
+    img_tensor = test_transforms(image).cuda()
     img_tensor = img_tensor.unsqueeze(0)
     output = model(img_tensor)
     index = output.data.cpu().numpy().argmax()
