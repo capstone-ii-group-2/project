@@ -82,7 +82,7 @@ def run_webcam():
 
         # showing the frame with input box and output box
         cv2.imshow('preview', frame_formatted)
-        cv2.imshow('subsection', subsection)
+        # cv2.imshow('subsection', subsection) # separate window to show only the subsection
         rval, frame = vc.read()
         key = cv2.waitKey(20)
         if key == 27:  # exit on escape key press
