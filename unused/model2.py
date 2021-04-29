@@ -1,7 +1,7 @@
 import torch
 
 
-# this is from https://towardsdatascience.com/convolutional-neural-network-for-image-classification-with-implementation-on-python-using-pytorch-7b88342c9ca9
+# tutorial https://towardsdatascience.com/convolutional-neural-network-for-image-classification-with-implementation-on-python-using-pytorch-7b88342c9ca9
 # DON'T
 # USE
 # THIS

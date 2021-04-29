@@ -17,10 +17,3 @@ CLASSES: list = ['A', 'B', 'C', 'D', 'E',
                  'P', 'Q', 'R', 'S', 'T',
                  'U', 'V', 'W', 'X', 'Y',
                  'Z', 'nothing']
-
-
-#def get_train_dataloader():
-#
-#
-#def get_test_dataloader():
-#

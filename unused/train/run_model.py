@@ -32,7 +32,7 @@ def run():
         rval = False
 
     while rval:
-        # code from https://medium.com/analytics-vidhya/hand-detection-and-finger-counting-using-opencv-python-5b594704eb08
+        # tutorial https://medium.com/analytics-vidhya/hand-detection-and-finger-counting-using-opencv-python-5b594704eb08
         #test_frame = cv2.resize(frame, (360,  360))
         #test_frame2 = frame[:, :, [2,0,1]]
 

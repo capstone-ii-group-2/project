@@ -43,7 +43,7 @@ def run_webcam():
     MAX_WIDTH = frame.shape[1]
 
     while rval:
-        # code from https://medium.com/analytics-vidhya/hand-detection-and-finger-counting-using-opencv-python-5b594704eb08
+        # tutorial for this section https://medium.com/analytics-vidhya/hand-detection-and-finger-counting-using-opencv-python-5b594704eb08
 
         # getting the subsection of the webcam image to be interpreted by the model
         height = 200

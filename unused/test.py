@@ -18,8 +18,8 @@ else:
 img_number = 1
 
 while rval and img_number < 3001:
-    # code from https://medium.com/analytics-vidhya/hand-detection-and-finger-counting-using-opencv-python-5b594704eb08
-    # code for Canny https://hub.packtpub.com/opencv-detecting-edges-lines-shapes/
+    # tutorial https://medium.com/analytics-vidhya/hand-detection-and-finger-counting-using-opencv-python-5b594704eb08
+    # tutorial for Canny https://hub.packtpub.com/opencv-detecting-edges-lines-shapes/
     #cv2.imwrite('testing.jpg', cv2.Canny(img, 200, 300))
     #cv2.imshow('canny', cv2.imread('testing.jpg'))
     time.sleep(0.01)

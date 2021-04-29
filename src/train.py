@@ -4,7 +4,7 @@ from torch import optim
 from torchvision import datasets, models
 import project_globals
 
-# most of this code is from https://towardsdatascience.com/how-to-train-an-image-classifier-in-pytorch-and-use-it-to-perform-basic-inference-on-single-images-99465a1e9bf5
+# tutorial for some of this https://towardsdatascience.com/how-to-train-an-image-classifier-in-pytorch-and-use-it-to-perform-basic-inference-on-single-images-99465a1e9bf5
 
 model: any
 device: any
@@ -43,7 +43,7 @@ def train_model():
 
     epochs = 5
 
-    # this found here https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html
+    # tutorial for this section https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html
     print_every = 20
     for epoch in range(epochs):
         running_loss = 0.0

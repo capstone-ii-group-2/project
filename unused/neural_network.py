@@ -13,7 +13,7 @@ import project_globals
 
 # TODO: Decide whether to get project_globals working in this unused file or not
 
-# most of this code is from https://towardsdatascience.com/how-to-train-an-image-classifier-in-pytorch-and-use-it-to-perform-basic-inference-on-single-images-99465a1e9bf5
+# tutorial https://towardsdatascience.com/how-to-train-an-image-classifier-in-pytorch-and-use-it-to-perform-basic-inference-on-single-images-99465a1e9bf5
 
 def run():
 
@@ -73,7 +73,7 @@ def train_model_2():
     epochs = 5
     steps = 0
 
-    # this found here https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html
+    # tutorial https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html
     print_every = 20
     for epoch in range(epochs):
         running_loss = 0.0
@@ -199,7 +199,7 @@ def run_webcam():
     predictions = []
     prediction: str
     while rval:
-        # code from https://medium.com/analytics-vidhya/hand-detection-and-finger-counting-using-opencv-python-5b594704eb08
+        # tutorial https://medium.com/analytics-vidhya/hand-detection-and-finger-counting-using-opencv-python-5b594704eb08
         #converted_image = frame[:, :, [0, 1, 2]]
         #converted_image = frame[:, :, [2, 1, 0]]
         converted_image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)

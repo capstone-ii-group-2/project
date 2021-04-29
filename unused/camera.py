@@ -12,7 +12,7 @@ else:
     rval = False
 
 while rval:
-    # code from https://medium.com/analytics-vidhya/hand-detection-and-finger-counting-using-opencv-python-5b594704eb08
+    # tutorial for this https://medium.com/analytics-vidhya/hand-detection-and-finger-counting-using-opencv-python-5b594704eb08
 
     cv2.imshow('preview', frame)
     rval, frame = vc.read()

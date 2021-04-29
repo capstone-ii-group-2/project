@@ -1,7 +1,7 @@
 from torch import nn
 import torch
 
-# https://nestedsoftware.com/2019/09/09/pytorch-image-recognition-with-convolutional-networks-4k17.159805.html
+# tutorial https://nestedsoftware.com/2019/09/09/pytorch-image-recognition-with-convolutional-networks-4k17.159805.html
 # my attempt at making a custom network. It's from the link above
 # the old version of the model is commented out, it followed the tutorial from the comment in neural_network.py
 # both versions of this file are unused
