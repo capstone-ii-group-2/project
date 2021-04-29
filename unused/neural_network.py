@@ -11,7 +11,6 @@ from torchvision import datasets, transforms, models
 #from model2 import CNN
 import project_globals
 
-# TODO: Decide whether to get project_globals working in this unused file or not
 
 # tutorial https://towardsdatascience.com/how-to-train-an-image-classifier-in-pytorch-and-use-it-to-perform-basic-inference-on-single-images-99465a1e9bf5
 
