@@ -20,22 +20,13 @@
     * Sometimes there is an error message during this process that claims that pip was not able to upgrade, however sometimes the upgrade still works so it's worth checking your version of pip even if the upgrade 'fails'.
     * In the event that pip does not upgrade, try running the original upgrade command as an Adminstrator or adding ```--user``` to the end of the command.
     
-### Run the Program
+### Run the Interpreter
 * To run the interpreter on a Windows machine, open the Command Prompt in the ```project``` directory (should be the base directory) and type ```run``` to execute ```run.bat```, which will then launch the live interpreter
 * To run the trainer on a Windows machine, follow the instructions above for running the interpreter, but run ```train.bat``` instead of ```run.bat```
 
-## Useful Links
-[Sign Language Interpreter using Deep Learning](https://github.com/harshbg/Sign-Language-Interpreter-using-Deep-Learning) - Very close to what we want to achieve, UI was inspired by this project
 
-[PyTorch](https://pytorch.org/) - The library we will be using to train the model
-
-[Webcam Tutorial](https://stackoverflow.com/questions/604749/how-do-i-access-my-webcam-in-python) - Page with the example I followed tog et the webcam running
-
-[Training Tutorial](https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html) - Tutorial from the official PyTorch website that I used to learn how to train a model
-
-[Another Training Tutorial](https://towardsdatascience.com/how-to-train-an-image-classifier-in-pytorch-and-use-it-to-perform-basic-inference-on-single-images-99465a1e9bf5) - Another tutorial that was very helpful for learning how to train a model
-
-
+### Using the Interpreter
+ Once you have the interpreter running, you should be able to place your hand in the input box (blue box) on the screen to start interpreting. Press the ```esc``` key to exit the program.
 
 ## Datasets
 
@@ -44,6 +35,7 @@
 
 
 ## Using the Kaggle dataset
+The dataset that comes with this project is the merged dataset, consisting of the Kaggle dataset and our own pictures. If you just want to use that dataset, you can skip this section.
 1. Download [this](https://www.kaggle.com/grassknoted/asl-alphabet) dataset
 2. Unzip the dataset
 3. Move both ```asl_alphabet_train``` and ```asl_alphabet_test``` into the ```training_datasets``` folder
@@ -67,3 +59,14 @@ If you want to make your own dataset, follow these steps:
     
 5. Press ```esc``` key to stop taking pictures and return to the letter selection menu
 6. Press ```esc``` again to exit the program or press a different key to start recording pictures for that letter
+
+## Useful Links
+[Sign Language Interpreter using Deep Learning](https://github.com/harshbg/Sign-Language-Interpreter-using-Deep-Learning) - Very close to what we want to achieve, UI was inspired by this project
+
+[PyTorch](https://pytorch.org/) - The library we will be using to train the model
+
+[Webcam Tutorial](https://stackoverflow.com/questions/604749/how-do-i-access-my-webcam-in-python) - Page with the example I followed tog et the webcam running
+
+[Training Tutorial](https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html) - Tutorial from the official PyTorch website that I used to learn how to train a model
+
+[Another Training Tutorial](https://towardsdatascience.com/how-to-train-an-image-classifier-in-pytorch-and-use-it-to-perform-basic-inference-on-single-images-99465a1e9bf5) - Another tutorial that was very helpful for learning how to train a model
