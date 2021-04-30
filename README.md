@@ -30,12 +30,17 @@
 
 ## Datasets
 
-[Dataset for Sign Language](https://www.kaggle.com/grassknoted/asl-alphabet) - Sign language dataset we found online that we merged with our own dataset to produce our final model
+[Kaggle Dataset](https://www.kaggle.com/grassknoted/asl-alphabet) - Sign language dataset we found online that we merged with our own dataset to produce our final model
+
+[Merged Dataset](https://drive.google.com/drive/folders/10gJHGiGCsPNjyIWuRm_j00EzSYENp816?usp=sharing) - Sign language dataset that combines our own images with the Kaggle dataset.
+
+## Using the Merged Dataset
+1. Download the dataset using the link above.
+2. Place the ```merged_dataset_test``` and ```merged_dataset_train``` into the ```datasets``` folder inside of the ```training_datasets``` folder. The paths should look like ```training_datsets/datasets/merged_dataset_test``` and ```training_datsets/datasets/merged_dataset_train```.
+3. You should now be ready to run the training code.
 
 
-
-## Using the Kaggle dataset
-The dataset that comes with this project is the merged dataset, consisting of the Kaggle dataset and our own pictures. If you just want to use that dataset, you can skip this section.
+## Using the Kaggle dataset.
 1. Download [this](https://www.kaggle.com/grassknoted/asl-alphabet) dataset
 2. Unzip the dataset
 3. Move both ```asl_alphabet_train``` and ```asl_alphabet_test``` into the ```training_datasets``` folder
